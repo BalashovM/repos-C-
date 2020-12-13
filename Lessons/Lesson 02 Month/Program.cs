@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,7 +26,7 @@ namespace Lesson_02_Month
                 if (isNum && (num > 0  && num < 13))
                 {
                     isMonth = true;
-                    Console.WriteLine($"Название месяца - {System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(num)}");
+                    Console.WriteLine($"Название месяца - {CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(num)}");
                 }
                 else
                 {
