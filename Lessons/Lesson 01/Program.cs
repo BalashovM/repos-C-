@@ -11,9 +11,9 @@ namespace Lesson_01
         static void Main(string[] args)
         {
             Console.Write("Представьтесь пожалуйста, как вас зовут: ");
-            String UserName = Console.ReadLine();
+            String userName = Console.ReadLine();
             Console.Clear();
-            Console.WriteLine($"Привет, {UserName}, сегодня {DateTime.Today.ToString("d")} текущее время {(DateTime.Now).ToString("HH:mm:ss")}!");
+            Console.WriteLine($"Привет, {userName}, сегодня {DateTime.Today.ToString("d")} текущее время {(DateTime.Now).ToString("HH:mm:ss")}!");
             Console.ReadKey(); 
         }
     }
