@@ -13,9 +13,9 @@ namespace Lesson_02_Temperature
         {
             Console.WriteLine("Вас приветсвует программа вычисления среднесуточной температуры.");
 
-            decimal minTemp;
-            decimal maxTemp;
-            decimal avgTemp;
+            decimal minTemp = -1000000;
+            decimal maxTemp =  1000000;
+
             bool isMintemp = false, isMaxTemp = false;
             bool isDecimal;
 
@@ -31,15 +31,10 @@ namespace Lesson_02_Temperature
                     Console.WriteLine("Попробуйте ещё раз.");
                 }
                 else
-                {
                     isMintemp = true;
-                    minTemp = decimal.Parse(value);
-                }
             }
-            avgTemp = minTemp;
 
-
-            while (!isMaxTemp)
+            while(!isMaxTemp)
             {
                 Console.Write("Введите максимальную темепературу за сутки: ");
                 String value = Console.ReadLine();
@@ -50,16 +45,16 @@ namespace Lesson_02_Temperature
                     Console.WriteLine("Формат введенных данных неверен.");
                     Console.WriteLine("Попробуйте ещё раз.");
                 }
-                else
+                else if (minTemp > maxTemp)
                 {
-                    isMaxTemp = true;
-                    //avgTemp = avgTemp + maxTemp;
+                    Console.WriteLine("Максимальная температура не может быть меньше минимальной.");
+                    Console.WriteLine("Попробуйте ещё раз.");
                 }
+                else
+                    isMaxTemp = true;
             }
 
-            //avgTemp = avgTemp/2;
-            
-            Console.WriteLine($"Среденесуточная температура{ avgTemp  }");
+            Console.WriteLine($"Среденесуточная температура { (minTemp + maxTemp)/2  }");
             Console.WriteLine("Для выхода нажмите любую клавишу.");
             Console.ReadKey();
         }
