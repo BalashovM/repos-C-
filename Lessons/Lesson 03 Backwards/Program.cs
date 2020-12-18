@@ -11,6 +11,13 @@ namespace Lesson_03_Backwards
         static void Main(string[] args)
         {
             Console.WriteLine("Вас приветсвует программа вывода строки задом наперёд.");
+
+            Console.Write("Введите строку: ");
+            string value = Console.ReadLine();
+
+            Console.WriteLine($"Строка задом наперёд : {new string(value.ToCharArray().Reverse().ToArray())}");
+            Console.WriteLine("Для выхода нажмите любую клавишу.");
+            Console.ReadKey();
         }
     }
 }
