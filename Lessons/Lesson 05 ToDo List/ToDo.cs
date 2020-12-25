@@ -8,6 +8,13 @@
 
         public bool IsDone { get; set; }
 
+        public ToDo()
+        {
+            Number = 0;
+            Title = "";
+            IsDone = false;
+        }
+
         public ToDo(string title)
         {
             Title = title;
