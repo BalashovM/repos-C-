@@ -26,10 +26,10 @@ namespace Lesson_05_Numbers_To_Binary_File
 
                 foreach (var value in values)
                 {
-                    if (int.TryParse(value, out int curNumber))
+                    if (byte.TryParse(value, out byte curNumber))
                         try
                         {
-                            list.Add(Convert.ToByte(curNumber));
+                            list.Add(curNumber);
                         }
                         catch (OverflowException) 
                         { }

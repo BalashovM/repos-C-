@@ -4,12 +4,14 @@ using System.Linq;
 
 namespace Lesson_05_ToDo_List
 {
-    public class ToDoList : List<ToDo>
-    {
+    public class ToDoList 
+
         public ToDoList()
         { 
         
         }
+
+        public ToDo ToDoItem { get; set; }
 
         public void Add(string title, bool isDone)
         {

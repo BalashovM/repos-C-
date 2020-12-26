@@ -6,29 +6,29 @@ namespace Lesson_05_ToDo_List
 {
     class Program
     {
-        public static ToDoList toDoList = new ToDoList();
-
         static void Main(string[] args)
         {
             Console.WriteLine("Вас приветсвует программа список задач .");
 
             string fileToDo = "task.json";
             string path = Path.Combine(Environment.CurrentDirectory, fileToDo);
-          
+
+            ToDo toDo = new ToDo();
+
             //Сделать чтение из файла
             if (File.Exists(path))
             {
                 string[] extToDoList = File.ReadAllLines(fileToDo);
                 foreach (string element in extToDoList)
                 {
-                    ToDo toDo = JsonSerializer.Deserialize<ToDo>(element);
-                    toDoList.Add(toDo.Title, toDo.IsDone);
+                    toDo = JsonSerializer.Deserialize<ToDo>(element);
+                    toDo.Add(toDo.Title, toDo.IsDone);
                 }
             }
             else
-                ToDoManualAdd();
+                ToDoManualAdd(toDo);
 
-            toDoList.ShowList();
+            toDo.ShowList();
 
             //Сделать проверку на выполненные задания.
             bool isExit = false;
@@ -45,20 +45,20 @@ namespace Lesson_05_ToDo_List
                     {
                         switch (action)
                         {
-                            case 1: isSelect = true; ToDoManualAdd(); break;
-                            case 2: isSelect = true; ToDoCheck();  break;
+                            case 1: isSelect = true; ToDoManualAdd(toDo); break;
+                            case 2: isSelect = true; ToDoCheck(toDo);  break;
                             case 3: isExit = true;  isSelect = true; break;
                             default: break;
                         }
                     }
                 }
 
-                ToDoReload();
+                ToDoReload(toDo);
             }
 
             File.WriteAllText(fileToDo, "");
 
-            foreach (ToDo element in toDoList)
+            foreach (ToDo element in toDo.ToDoList)
             {
                 string json = JsonSerializer.Serialize(element);
                 File.AppendAllLines(fileToDo, new[] { json });
@@ -66,12 +66,12 @@ namespace Lesson_05_ToDo_List
 
         }
 
-        static void ToDoManualAdd()
+        static void ToDoManualAdd(ToDo toDo)
         {
             bool isManualFinish = false;
             while (!isManualFinish)
             {
-                toDoList.NewToDo();
+                toDo.NewToDo();
 
                 bool isSelect = false;
                 while (!isSelect)
@@ -97,7 +97,7 @@ namespace Lesson_05_ToDo_List
                 }
             }
         }
-        static void ToDoCheck()
+        static void ToDoCheck(ToDo toDo)
         {
             bool isEnd = false;
             while (!isEnd)
@@ -110,7 +110,7 @@ namespace Lesson_05_ToDo_List
 
                     if (int.TryParse(value, out int intToDoNum))
                     {
-                        foreach (ToDo toDoItem in toDoList)
+                        foreach (ToDo toDoItem in toDo.ToDoList)
                         {
                             if (toDoItem.Number == intToDoNum)
                             {
@@ -126,12 +126,12 @@ namespace Lesson_05_ToDo_List
                     if(!isSelect)
                         Console.WriteLine("Указаный вами номер задания отсутствует в списке ");
 
-                    Console.Write("Отметить ещё одно задание? (1 - Да, 2 - Нет): ");
-                    value = Console.ReadLine();
-
                     isSelect = false;
                     while (!isSelect)
                     {
+                        Console.Write("Отметить ещё одно задание? (1 - Да, 2 - Нет): ");
+                        value = Console.ReadLine();
+
                         if (int.TryParse(value, out int intSelect))
                         {
                             switch (intSelect)
@@ -146,10 +146,10 @@ namespace Lesson_05_ToDo_List
             }
         }
 
-        static void ToDoReload()
+        static void ToDoReload(ToDo toDo)
         {
             Console.Clear();
-            toDoList.ShowList();
+            toDo.ShowList();
         }
     }
 }
