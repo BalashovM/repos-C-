@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 
@@ -18,12 +19,9 @@ namespace Lesson_05_ToDo_List
             //Сделать чтение из файла
             if (File.Exists(path))
             {
-                string[] extToDoList = File.ReadAllLines(fileToDo);
-                foreach (string element in extToDoList)
-                {
-                    toDo = JsonSerializer.Deserialize<ToDo>(element);
-                    toDo.Add(toDo.Title, toDo.IsDone);
-                }
+                string extToDoList = File.ReadAllText(fileToDo);
+
+                toDo.ToDoList = JsonSerializer.Deserialize<List<ToDo>>(extToDoList);
             }
             else
                 ToDoManualAdd(toDo);
@@ -56,14 +54,9 @@ namespace Lesson_05_ToDo_List
                 ToDoReload(toDo);
             }
 
-            File.WriteAllText(fileToDo, "");
+            string json = JsonSerializer.Serialize(toDo.ToDoList);
 
-            foreach (ToDo element in toDo.ToDoList)
-            {
-                string json = JsonSerializer.Serialize(element);
-                File.AppendAllLines(fileToDo, new[] { json });
-            }
-
+            File.WriteAllText(fileToDo, json);
         }
 
         static void ToDoManualAdd(ToDo toDo)

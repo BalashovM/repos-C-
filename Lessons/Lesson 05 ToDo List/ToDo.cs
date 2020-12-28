@@ -12,15 +12,13 @@ namespace Lesson_05_ToDo_List
 
         public bool IsDone { get; set; }
 
-        public List<ToDo> ToDoList { get; }
+        public List<ToDo> ToDoList { get; set; }
 
         public ToDo()
         {
             Number = 0;
             Title = "";
             IsDone = false;
-            if (ToDoList == null)
-                ToDoList = new List<ToDo>();
         }
 
         public ToDo(string title)
@@ -46,7 +44,10 @@ namespace Lesson_05_ToDo_List
                 qtyToDo = ToDoList.Count();
             
             int number = ++qtyToDo;
-
+           
+            if (ToDoList == null)
+                ToDoList = new List<ToDo>();
+        
             ToDoList.Add(new ToDo(number, title, isDone));
         }
 
