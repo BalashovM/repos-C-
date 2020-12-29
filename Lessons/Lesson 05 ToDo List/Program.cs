@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 
@@ -6,31 +7,25 @@ namespace Lesson_05_ToDo_List
 {
     class Program
     {
-        public static ToDoList toDoList = new ToDoList();
-
         static void Main(string[] args)
         {
             Console.WriteLine("Вас приветсвует программа список задач .");
 
             string fileToDo = "task.json";
             string path = Path.Combine(Environment.CurrentDirectory, fileToDo);
-          
-            //Сделать чтение из файла
+
+            ToDos toDoList = new ToDos();
+
             if (File.Exists(path))
             {
-                string[] extToDoList = File.ReadAllLines(fileToDo);
-                foreach (string element in extToDoList)
-                {
-                    ToDo toDo = JsonSerializer.Deserialize<ToDo>(element);
-                    toDoList.Add(toDo.Title, toDo.IsDone);
-                }
+                string extToDoList = File.ReadAllText(fileToDo);
+                toDoList.ToDoList = JsonSerializer.Deserialize<List<ToDo>>(extToDoList);
             }
             else
-                ToDoManualAdd();
+                ToDoManualAdd(toDoList);
 
             toDoList.ShowList();
 
-            //Сделать проверку на выполненные задания.
             bool isExit = false;
             while (!isExit)
             {
@@ -45,28 +40,22 @@ namespace Lesson_05_ToDo_List
                     {
                         switch (action)
                         {
-                            case 1: isSelect = true; ToDoManualAdd(); break;
-                            case 2: isSelect = true; ToDoCheck();  break;
-                            case 3: isExit = true;  isSelect = true; break;
+                            case 1: isSelect = true; ToDoManualAdd(toDoList); break;
+                            case 2: isSelect = true; ToDoCheck(toDoList); break;
+                            case 3: isSelect = true; isExit = true; break;
                             default: break;
                         }
                     }
                 }
 
-                ToDoReload();
+                ToDoReload(toDoList);
             }
 
-            File.WriteAllText(fileToDo, "");
-
-            foreach (ToDo element in toDoList)
-            {
-                string json = JsonSerializer.Serialize(element);
-                File.AppendAllLines(fileToDo, new[] { json });
-            }
-
+            string json = JsonSerializer.Serialize(toDoList.ToDoList);
+            File.WriteAllText(fileToDo,  json );
         }
 
-        static void ToDoManualAdd()
+        static void ToDoManualAdd(ToDos toDoList)
         {
             bool isManualFinish = false;
             while (!isManualFinish)
@@ -81,15 +70,11 @@ namespace Lesson_05_ToDo_List
 
                     if (int.TryParse(value, out int intIsDone))
                     {
-                        if (intIsDone == 2)
+                        switch (intIsDone)
                         {
-                            isManualFinish = true;
-                            isSelect = true;
-                        }
-                        else if (intIsDone == 1)
-                        {
-                            isManualFinish = false;
-                            isSelect = true;
+                            case 1: isSelect = true; isManualFinish = false; break;
+                            case 2: isSelect = true; isManualFinish = true; break;
+                            default: Console.WriteLine("Необходимо выбрать (1 - Да, 2 - Нет)."); break;
                         }
                     }
                     else
@@ -97,7 +82,7 @@ namespace Lesson_05_ToDo_List
                 }
             }
         }
-        static void ToDoCheck()
+        static void ToDoCheck(ToDos toDoList)
         {
             bool isEnd = false;
             while (!isEnd)
@@ -110,11 +95,11 @@ namespace Lesson_05_ToDo_List
 
                     if (int.TryParse(value, out int intToDoNum))
                     {
-                        foreach (ToDo toDoItem in toDoList)
+                        foreach (ToDo toDoItem in toDoList.ToDoList)
                         {
                             if (toDoItem.Number == intToDoNum)
                             {
-                                toDoItem.IsDone = true;
+                                toDoItem.isChange();
                                 isSelect = true;
                                 break;
                             }
@@ -146,7 +131,7 @@ namespace Lesson_05_ToDo_List
             }
         }
 
-        static void ToDoReload()
+        static void ToDoReload(ToDos toDoList)
         {
             Console.Clear();
             toDoList.ShowList();

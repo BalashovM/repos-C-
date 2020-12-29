@@ -4,19 +4,26 @@ using System.Linq;
 
 namespace Lesson_05_ToDo_List
 {
-    public class ToDoList : List<ToDo>
+    public class ToDos
     {
-        public ToDoList()
-        { 
         
+        public List<ToDo> ToDoList {get; set;}
+
+        public ToDos()
+        {
+            ToDoList  = new List<ToDo>();
+        }
+        public ToDos(List<ToDo> toDoList)
+        {
+            ToDoList = toDoList;
         }
 
         public void Add(string title, bool isDone)
         {
-            int qtyToDo = this.Count();
+            int qtyToDo = this.ToDoList.Count();
             int number = qtyToDo++;
 
-            this.Add(new ToDo(number, title, isDone));
+            this.ToDoList.Add(new ToDo(number, title, isDone));
 
         }
 
@@ -25,7 +32,7 @@ namespace Lesson_05_ToDo_List
             Console.WriteLine();
             Console.WriteLine("Номер | Выполнена |              Задача           ");
             Console.WriteLine("--------------------------------------------------");
-            foreach (var td in this)
+            foreach (var td in this.ToDoList)
             {
                 Console.WriteLine("   {0}        {1}   \t{2}", td.Number.ToString(), (td.IsDone) ? "X" : "O", td.Title);
             }
@@ -47,15 +54,11 @@ namespace Lesson_05_ToDo_List
 
                 if (int.TryParse(value, out int intIsDone))
                 {
-                    if (intIsDone == 1)
+                    switch (intIsDone)
                     {
-                        isDone = true;
-                        isSelect = true;
-                    }
-                    else
-                    {
-                        isDone = false;
-                        isSelect = true;
+                        case 1: isSelect = true; isDone = true; break;
+                        case 2: isSelect = true; isDone = false; break;
+                        default: Console.WriteLine("Необходимо выбрать (1 - Да, 2 - Нет)."); break;
                     }
                 }
                 else

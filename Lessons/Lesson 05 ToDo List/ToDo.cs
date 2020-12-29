@@ -27,5 +27,10 @@
             Title = title;
             IsDone = isDone;
         }
+
+        public void isChange()
+        {
+            IsDone = !this.IsDone;
+        }
     }
 }
