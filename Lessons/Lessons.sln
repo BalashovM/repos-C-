@@ -73,6 +73,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lesson 08 Settings", "Part 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lesson 01 Flowchart", "Lesson 01 Flowchart\Lesson 01 Flowchart.csproj", "{FB01C4C3-4497-4B2A-9FD3-BBE6866D7F94}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lesson 01 Fibonacci Recursive", "Lesson 01 Fibonacci Recursive\Lesson 01 Fibonacci Recursive.csproj", "{8C9F090C-5C57-4DE1-B82F-6867CAAFAAF2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lesson 01 Fibonacci Not Recursive", "Lesson 01 Fibonacci Not Recursive\Lesson 01 Fibonacci Not Recursive.csproj", "{BD56A559-F50F-4B9F-ABF3-00CA0087F547}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -171,6 +175,14 @@ Global
 		{FB01C4C3-4497-4B2A-9FD3-BBE6866D7F94}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB01C4C3-4497-4B2A-9FD3-BBE6866D7F94}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB01C4C3-4497-4B2A-9FD3-BBE6866D7F94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C9F090C-5C57-4DE1-B82F-6867CAAFAAF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C9F090C-5C57-4DE1-B82F-6867CAAFAAF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C9F090C-5C57-4DE1-B82F-6867CAAFAAF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C9F090C-5C57-4DE1-B82F-6867CAAFAAF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD56A559-F50F-4B9F-ABF3-00CA0087F547}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD56A559-F50F-4B9F-ABF3-00CA0087F547}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD56A559-F50F-4B9F-ABF3-00CA0087F547}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD56A559-F50F-4B9F-ABF3-00CA0087F547}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -209,6 +221,8 @@ Global
 		{D2A06741-E64A-4390-AF7F-F5EC82E1007F} = {D36E25B3-4899-4221-940A-54F1A569522D}
 		{733C4B79-6414-4CF8-9E3D-5F8AA6391753} = {D2A06741-E64A-4390-AF7F-F5EC82E1007F}
 		{FB01C4C3-4497-4B2A-9FD3-BBE6866D7F94} = {EB34D362-E262-44C2-90AD-C6D0696613D2}
+		{8C9F090C-5C57-4DE1-B82F-6867CAAFAAF2} = {EB34D362-E262-44C2-90AD-C6D0696613D2}
+		{BD56A559-F50F-4B9F-ABF3-00CA0087F547} = {EB34D362-E262-44C2-90AD-C6D0696613D2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {76CF4071-960C-48C6-A166-D5E0BEE144F7}
