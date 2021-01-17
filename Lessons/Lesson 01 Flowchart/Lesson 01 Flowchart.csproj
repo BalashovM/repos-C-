@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BCF0E05A-1174-425F-8360-A21349877C52}</ProjectGuid>
+    <ProjectGuid>{FB01C4C3-4497-4B2A-9FD3-BBE6866D7F94}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Lesson_02</RootNamespace>
-    <AssemblyName>Lesson 02</AssemblyName>
+    <RootNamespace>Lesson_01_Flowchart</RootNamespace>
+    <AssemblyName>Lesson 01 Flowchart</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
