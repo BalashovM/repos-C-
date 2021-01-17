@@ -77,6 +77,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lesson 01 Fibonacci Recursi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lesson 01 Fibonacci Not Recursive", "Lesson 01 Fibonacci Not Recursive\Lesson 01 Fibonacci Not Recursive.csproj", "{BD56A559-F50F-4B9F-ABF3-00CA0087F547}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lesson 02 Doubly linked list", "Lesson 02 Doubly linked list\Lesson 02 Doubly linked list.csproj", "{319171CD-7D2C-4D6E-9B35-E9DCFC30AA07}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -183,6 +185,10 @@ Global
 		{BD56A559-F50F-4B9F-ABF3-00CA0087F547}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD56A559-F50F-4B9F-ABF3-00CA0087F547}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD56A559-F50F-4B9F-ABF3-00CA0087F547}.Release|Any CPU.Build.0 = Release|Any CPU
+		{319171CD-7D2C-4D6E-9B35-E9DCFC30AA07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{319171CD-7D2C-4D6E-9B35-E9DCFC30AA07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{319171CD-7D2C-4D6E-9B35-E9DCFC30AA07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{319171CD-7D2C-4D6E-9B35-E9DCFC30AA07}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -223,6 +229,7 @@ Global
 		{FB01C4C3-4497-4B2A-9FD3-BBE6866D7F94} = {EB34D362-E262-44C2-90AD-C6D0696613D2}
 		{8C9F090C-5C57-4DE1-B82F-6867CAAFAAF2} = {EB34D362-E262-44C2-90AD-C6D0696613D2}
 		{BD56A559-F50F-4B9F-ABF3-00CA0087F547} = {EB34D362-E262-44C2-90AD-C6D0696613D2}
+		{319171CD-7D2C-4D6E-9B35-E9DCFC30AA07} = {CE59883A-9E7B-490D-ACC0-116015133B3F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {76CF4071-960C-48C6-A166-D5E0BEE144F7}
