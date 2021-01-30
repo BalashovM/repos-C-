@@ -79,7 +79,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lesson 02 Doubly linked lis
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lesson 03", "Lesson 03", "{3E240E09-5983-44D3-A251-AF2AB20BB135}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lesson 03 Distance Calc Perfomance", "Lesson 03 Distance Calc Perfomance\Lesson 03 Distance Calc Perfomance.csproj", "{C9DBF90D-0C5C-4E68-BED0-06B3C5EF10D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lesson 03 Distance Calc Perfomance", "Lesson 03 Distance Calc Perfomance\Lesson 03 Distance Calc Perfomance.csproj", "{C9DBF90D-0C5C-4E68-BED0-06B3C5EF10D7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lesson04", "Lesson04", "{448F3706-EDBC-4B58-AC69-8F13F13D9D87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lesson 04 Search in HashSet and Array", "Lesson 04 Search in HashSet and Array\Lesson 04 Search in HashSet and Array.csproj", "{91CAB7DA-1009-499A-B73C-3D007A14598A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lesson 04 Binary Tree", "Lesson 04 Binary Tree\Lesson 04 Binary Tree.csproj", "{D6DFA6AA-9372-4C1A-A422-4AAD96D05993}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -191,6 +197,14 @@ Global
 		{C9DBF90D-0C5C-4E68-BED0-06B3C5EF10D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9DBF90D-0C5C-4E68-BED0-06B3C5EF10D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9DBF90D-0C5C-4E68-BED0-06B3C5EF10D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91CAB7DA-1009-499A-B73C-3D007A14598A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91CAB7DA-1009-499A-B73C-3D007A14598A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91CAB7DA-1009-499A-B73C-3D007A14598A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91CAB7DA-1009-499A-B73C-3D007A14598A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6DFA6AA-9372-4C1A-A422-4AAD96D05993}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6DFA6AA-9372-4C1A-A422-4AAD96D05993}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6DFA6AA-9372-4C1A-A422-4AAD96D05993}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6DFA6AA-9372-4C1A-A422-4AAD96D05993}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -233,6 +247,9 @@ Global
 		{319171CD-7D2C-4D6E-9B35-E9DCFC30AA07} = {CE59883A-9E7B-490D-ACC0-116015133B3F}
 		{3E240E09-5983-44D3-A251-AF2AB20BB135} = {8D2C0C2E-0749-4297-8BF5-0B5BB982E1DD}
 		{C9DBF90D-0C5C-4E68-BED0-06B3C5EF10D7} = {3E240E09-5983-44D3-A251-AF2AB20BB135}
+		{448F3706-EDBC-4B58-AC69-8F13F13D9D87} = {8D2C0C2E-0749-4297-8BF5-0B5BB982E1DD}
+		{91CAB7DA-1009-499A-B73C-3D007A14598A} = {448F3706-EDBC-4B58-AC69-8F13F13D9D87}
+		{D6DFA6AA-9372-4C1A-A422-4AAD96D05993} = {448F3706-EDBC-4B58-AC69-8F13F13D9D87}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {76CF4071-960C-48C6-A166-D5E0BEE144F7}
