@@ -12,30 +12,39 @@ namespace Lesson_05_Binary_Tree_BFS_DFS
             var binaryTree = new Tree();
             Random rand = new Random();
 
-            var elements = rand.Next(6,15);
+            int nodeMin = 6;
+            int nodeMax = 15;
+            int valueMin = 1;
+            int valueMax = 99;
+
+            //Количество эелемнтов в дереве 
+            var elements = rand.Next(nodeMin, nodeMax);
+            var searchIndex = rand.Next(0, elements-1);
+
+            int searchValue = 0, currenValue = 0;
 
             for (int i = 0; i < elements; i++)
             {
-                binaryTree.Add(rand.Next(1, 99));
+                currenValue = rand.Next(valueMin, valueMax);
+                binaryTree.Add(currenValue);
+                
+                if (searchIndex == i)
+                    searchValue = currenValue;
             }
 
             Console.WriteLine("Дерево :");
             Console.WriteLine($"{binaryTree.PrintTree()}");
-            TreeBFS(binaryTree, 16);
-            TreeDFS(binaryTree, 16);
+            Console.WriteLine($"Искомое значение в дереве: {searchValue}");
+            TreeBFS(binaryTree, searchValue);
+            TreeDFS(binaryTree, searchValue);
             Console.ReadLine();
         }
         public static void TreeBFS(Tree _tree, int _search) 
         {
             Queue<Node> q = new Queue<Node>();
             q.Enqueue(_tree.RootNode);
-            Node level = _tree.RootNode;
-            //Node last = null;
             Node current = null;
-            StringBuilder printLevels = new StringBuilder();
             StringBuilder printAll = new StringBuilder();
-            
-            Console.WriteLine("Список обхода по уровням:");
             
             while (q.Count > 0)
             {
@@ -43,45 +52,25 @@ namespace Lesson_05_Binary_Tree_BFS_DFS
 
                 if (current == null)
                     continue;
+                else
+                    printAll.Append($"{current?.Data.ToString()} ");
 
                 if (current.Data.ToString() == _search.ToString())
                     break;
 
-                printLevels.Append($"{current?.Data.ToString()} ");
-
-                if (current == level || ((level == null) /*&& (current.LeftNode == null) && (current.RightNode == null)*/))
-                {
-                    Console.WriteLine($"{printLevels.ToString()}");
-                    printLevels.Clear();
-                    level = null;
-                }
-
                 q.Enqueue(current.LeftNode);
                 q.Enqueue(current.RightNode);
-
-                if (level == null )
-                {
-                    if (current.RightNode != null)
-                    {
-                        level = current.RightNode;
-                    }
-                    else
-                    {
-                        level = current.LeftNode;
-                    }
-                }
-
-                printAll.Append($"{current?.Data.ToString()} ");
             }
-            Console.WriteLine($"Список обхода в строку : {printAll.ToString()}");
+            Console.WriteLine($"Список обхода в ширину : {printAll.ToString()}");
         }
         public static void TreeDFS(Tree _tree, int _search)
         {
             Stack<Node> stack = new Stack<Node>();
             stack.Push(_tree.RootNode);
-            StringBuilder printAll = new StringBuilder();
-            var added = new HashSet<Node>();
             
+            var added = new HashSet<Node>();
+            added.Add(_tree.RootNode);
+
             while (stack.Count>0)
             {
                 var current = stack.Peek();
@@ -100,14 +89,18 @@ namespace Lesson_05_Binary_Tree_BFS_DFS
                 else if (current.RightNode != null && !added.Contains(current.RightNode))
                 {
                     stack.Push(current.RightNode);
-                    added.Add(current.LeftNode);
+                    added.Add(current.RightNode);
                 }
                 else
                     stack.Pop();
-
-                printAll.Append($"{current?.Data.ToString()} ");
             }
-            Console.WriteLine($"Список обхода в строку : {printAll.ToString()}");
+            
+            StringBuilder printAll = new StringBuilder();
+
+            foreach ( var x in added)
+                printAll.Append($"{x.Data.ToString()} ");
+
+            Console.WriteLine($"Список обхода в глубину : {printAll.ToString()}");
         }
     }
 }
