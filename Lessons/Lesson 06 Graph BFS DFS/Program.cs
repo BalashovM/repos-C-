@@ -14,7 +14,7 @@ namespace Lesson_06_Graph_BFS_DFS
 
             int minVertex = 5;
             int maxVertex = 20;
-            Graph graph = null;
+            Matrix matrix = null;
 
             while (!isEnd)
             {
@@ -23,22 +23,27 @@ namespace Lesson_06_Graph_BFS_DFS
                         graphSize >= minVertex && 
                             graphSize <= maxVertex)
                 {
-                    graph?.Clear();
+                    matrix?.Clear();
 
-                    graph = new Graph(graphSize);
+                    matrix = new Matrix(graphSize);
 
-                    graph.allowedLoops = YesNo("Вершины графа могут иметь петли?");
-                    graph.isDirected = YesNo("Граф должен быть ориентированным?");
-                    graph.isWeighted = YesNo("Граф должен быть взвешенным?");
+                    matrix.allowedLoops = YesNo("Вершины графа могут иметь петли?");
+                    matrix.isDirected = YesNo("Граф должен быть ориентированным?");
+                    matrix.isWeighted = YesNo("Граф должен быть взвешенным?");
 
-                    if (graph.isWeighted)
-                        graph.revertEqually = YesNo("Вес дуг между одними вершинами в разных направлениях должен быть одинаковым?");
+                    if (matrix.isWeighted)
+                        matrix.revertEqually = YesNo("Вес дуг между одними вершинами в разных направлениях должен быть одинаковым?");
                     else
-                        graph.revertEqually = false;
+                        matrix.revertEqually = false;
 
-                    graph.Generate();
-                    graph.Show();
+                    matrix.Generate();
+                    Console.WriteLine("Сгенерированная матрица смежности для графа:");
+                    matrix.Show();
 
+                    Graph graph = new Graph(matrix);
+                         
+
+                    
                     isEnd = YesNo("Закончить?");
                 }
                 else

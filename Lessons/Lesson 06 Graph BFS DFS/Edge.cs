@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lesson_06_Graph_BFS_DFS
 {
-    class Edge
+    class Edgee
     {
     }
 
