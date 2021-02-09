@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lesson_06_Graph_BFS_DFS
 {
@@ -41,9 +37,41 @@ namespace Lesson_06_Graph_BFS_DFS
                     matrix.Show();
 
                     Graph graph = new Graph(matrix);
-                         
 
+                    bool isUserValue = false;
+                    int searchValue = 0;
+
+                    while (!isUserValue)
+                    {
+                        Console.Write("Введите искомое значение : ");
+                        string val = Console.ReadLine();
+                        if (int.TryParse(val, out int userValue))
+                        {
+                            searchValue = userValue;
+                            isUserValue = true;
+                        }
+                        else
+                            Console.WriteLine("Необходимо ввести целое число.");
+                    }
+
+                    Console.WriteLine("Демонстрация поиска в ширину (BFS):");
+                    Node res = graph.BFS(graph.Nodes.Find(x => x.Value == 0), searchValue);
+
+                    if (res != null)
+                        Console.WriteLine("Искомое значение найдено");
+                    else
+                        Console.WriteLine("Искомое значение не найдено.");
                     
+                    res = null;
+
+                    Console.WriteLine("Демонстрация поиска в глубину (DFS):");
+                    res = graph.DFS(graph.Nodes.Find(x => x.Value == 0), searchValue);
+
+                    if (res != null)
+                        Console.WriteLine("Искомое значение найдено");
+                    else
+                        Console.WriteLine("Искомое значение не найдено.");
+
                     isEnd = YesNo("Закончить?");
                 }
                 else
