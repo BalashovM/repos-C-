@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Lesson_07_CalcVariant
 {
@@ -41,30 +42,46 @@ namespace Lesson_07_CalcVariant
                 int blockQty = (int)Math.Truncate((m * n) * 0.1);
                 Console.WriteLine($"Количество препятствий : {blockQty}");
                 int[,] blockCoord = new int[blockQty, 2];
+                HashSet<Tuple<int, int>> blocks = new HashSet<Tuple<int, int>>();
+                while (blocks.Count != blockQty)
+                {
+                    blocks.Add(Tuple.Create(rand.Next(1, m),rand.Next(1, n)));
+                }
+                int el = 0;
+                foreach (var x in blocks)
+                {
+                    blockCoord[el, 0] = x.Item1;
+                    blockCoord[el, 1] = x.Item2;
+                    el = el + 1;
+                }
                 //Распологаем препятствия
-                for (int i = 0; i < blockQty; i++)
+                /*for (int i = 0; i < blockQty; i++)
                 {
-                    blockCoord[i, 0] = rand.Next(1, m);
-                    blockCoord[i, 1] = rand.Next(1, n);
+                    bool isAdd = false;
+                    while (!isAdd)
+                    {
+                        int newX = blockCoord[i, 1] = rand.Next(1, n);
+                        int newY = blockCoord[i, 0] = rand.Next(1, m);
+
+                        if(Array.Exists(blockCoord, element => element[i, 0] == newY))
+
+                    }
                 }
+                */
+                //Определяем можитель/делитель
+                int k = (int)Math.Pow(10, Math.Log10(maxSize));
+
                 //Для сортировки переводим в дроби
-                float[] blockCoordSort = new float[blockQty];
+                decimal[] blockCoordSort = new decimal[blockQty];
                 for (int i = 0; i < blockQty; i++)
-                {
-                    blockCoordSort[i] = (float)((float)blockCoord[i, 0] + (float)blockCoord[i, 1] / 10.0);
-                }
+                    blockCoordSort[i] = (decimal)((decimal)blockCoord[i, 0] + (decimal)blockCoord[i, 1] / (decimal)k);
                 //Использум QuickSort для float
                 QuickSort(blockCoordSort,0, blockQty-1);
                 //Переводим обратно в int
                 for (int i = 0; i < blockQty; i++)
                 {
-                    int xx = (int)Math.Truncate(blockCoordSort[i]);
                     blockCoord[i, 0] = (int)Math.Truncate(blockCoordSort[i]);
-
-                    string yyy = System.Convert.ToString(blockCoordSort[i]);
-                    string[] parts = yyy.Split(',');
-                    int.TryParse(parts[1],out int yy);
-                    blockCoord[i, 1] = yy;
+                    blockCoord[i, 1] = (int)Math.Truncate((blockCoordSort[i] - Math.Truncate(blockCoordSort[i])) * k); ;
                 }
                 
                 Console.WriteLine("Координаты препятствий");
@@ -83,11 +100,26 @@ namespace Lesson_07_CalcVariant
                             blockCount++;
                         }
                         else if (i == 0 || j == 0)
-                            fieldWithBlocks[i, j] = 1;
+                        {
+                            if((i == 0 && j > 0 && fieldWithBlocks[i, j - 1] == 0) || (i > 0 && j == 0 && fieldWithBlocks[i-1, j] == 0))
+                                fieldWithBlocks[i, j] = 1;
+                            else
+                                fieldWithBlocks[i, j] = 1;
+                        }
                         else
                             fieldWithBlocks[i, j] = fieldWithBlocks[i - 1, j] + fieldWithBlocks[i, j - 1];
 
-                int numbers = (int)Math.Log10(fieldWithBlocks[m - 1, n - 1]) + 2;
+                
+                int maxValue = fieldWithBlocks[m - 1, n - 1];
+                //Если препятствие в конце тогда определяем максимальный элемент
+                if(maxValue ==0)
+                    //Ищем максимальный элемент массива
+                    foreach (int num in fieldWithBlocks)
+                    {
+                        maxValue = maxValue < num ? num : maxValue;
+                    }
+
+                int numbers = (int)Math.Log10(maxValue) + 2;
 
                 Console.WriteLine("Массив значений:");
                 for (int i = 0; i < m + 1; i++)
@@ -108,36 +140,41 @@ namespace Lesson_07_CalcVariant
                         }
                         else
                         {
-                            if (fieldWithBlocks[i - 1, j - 1] == 0)
-                                Console.ForegroundColor = ConsoleColor.Red;
+                            if (fieldWithBlocks[i - 1, j - 1] == 0 )
+                                if(blocks.Contains(Tuple.Create(i - 1, j - 1)))
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                else
+                                    Console.ForegroundColor = ConsoleColor.Blue;
                             else 
                                 Console.ResetColor();
                             Console.Write(fieldWithBlocks[i - 1, j - 1].ToString().PadLeft(numbers, ' '));
                         }
                     }
+                    Console.ResetColor();
                     Console.Write("\n");
                 }
                 Console.Write("\n");
+                Console.WriteLine("Красные 0 - препятствия, Синие 0 - нет вариантов пройти, Белые цифры - кол-во вариантов добраться до точки.");
                 Console.WriteLine($"Количество вариантов с препятствиями : {fieldWithBlocks[m - 1, n - 1]}");
 
                 bool isChoise = false;
                 while (!isChoise)
                 {
-                    int choise = GetUserInt("Закончить = 1, Повторить - 0 \nВаш выбор: ");
+                    int choise = GetUserInt("Закончить = 1, Повторить - 2 \nВаш выбор: ");
 
                     switch (choise)
                     {
                         case 1: isChoise = true; isEnd = true; break;
-                        case 0: isChoise = true; break;
-                        default: Console.WriteLine("Необходимо выбрать 0 или 1"); break;
+                        case 2: isChoise = true; break;
+                        default: Console.WriteLine("Необходимо выбрать 1 или 2"); break;
                     }
                 }
             }
         }
-        static void QuickSort(float[] array, int first, int last)
+        static void QuickSort(decimal[] array, int first, int last)
         {
             int i = first, j = last;
-            float x = array[(first + last) / 2];
+            decimal x = array[(first + last) / 2];
 
             do
             {
@@ -154,7 +191,6 @@ namespace Lesson_07_CalcVariant
                         array[i] = array[j];
                         array[j] = tmp;
                     }
-
                     i++;
                     j--;
                 }
@@ -175,8 +211,13 @@ namespace Lesson_07_CalcVariant
             {
                 if (int.TryParse(Console.ReadLine(), out int value))
                 {
-                    isValue = true;
-                    return value;
+                    if (value > 0)
+                    {
+                        isValue = true;
+                        return value;
+                    }
+                    else
+                        Console.WriteLine("Число должно быть больше нуля.");
                 }
                 else
                     Console.WriteLine("Необходимо ввести целое число.");
