@@ -47,6 +47,7 @@ namespace Lesson_07_CalcVariant
                 {
                     blocks.Add(Tuple.Create(rand.Next(1, m),rand.Next(1, n)));
                 }
+                // Распологаем препятствия
                 int el = 0;
                 foreach (var x in blocks)
                 {
@@ -54,20 +55,7 @@ namespace Lesson_07_CalcVariant
                     blockCoord[el, 1] = x.Item2;
                     el = el + 1;
                 }
-                //Распологаем препятствия
-                /*for (int i = 0; i < blockQty; i++)
-                {
-                    bool isAdd = false;
-                    while (!isAdd)
-                    {
-                        int newX = blockCoord[i, 1] = rand.Next(1, n);
-                        int newY = blockCoord[i, 0] = rand.Next(1, m);
-
-                        if(Array.Exists(blockCoord, element => element[i, 0] == newY))
-
-                    }
-                }
-                */
+                
                 //Определяем можитель/делитель
                 int k = (int)Math.Pow(10, Math.Log10(maxSize));
 
