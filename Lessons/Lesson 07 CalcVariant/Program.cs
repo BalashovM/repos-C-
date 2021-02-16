@@ -55,33 +55,17 @@ namespace Lesson_07_CalcVariant
                     el = el + 1;
                 }
                 //Распологаем препятствия
-                /*for (int i = 0; i < blockQty; i++)
-                {
-                    bool isAdd = false;
-                    while (!isAdd)
-                    {
-                        int newX = blockCoord[i, 1] = rand.Next(1, n);
-                        int newY = blockCoord[i, 0] = rand.Next(1, m);
-
-                        if(Array.Exists(blockCoord, element => element[i, 0] == newY))
-
-                    }
-                }
-                */
-                //Определяем можитель/делитель
-                int k = (int)Math.Pow(10, Math.Log10(maxSize));
-
-                //Для сортировки переводим в дроби
-                decimal[] blockCoordSort = new decimal[blockQty];
+                //Для сортировки переводим в один массив
+                int[] blockCoordSort = new int[blockQty];
                 for (int i = 0; i < blockQty; i++)
-                    blockCoordSort[i] = (decimal)((decimal)blockCoord[i, 0] + (decimal)blockCoord[i, 1] / (decimal)k);
+                    blockCoordSort[i] = (blockCoord[i, 0]*10 + blockCoord[i, 1]);
                 //Использум QuickSort для float
                 QuickSort(blockCoordSort,0, blockQty-1);
                 //Переводим обратно в int
                 for (int i = 0; i < blockQty; i++)
                 {
-                    blockCoord[i, 0] = (int)Math.Truncate(blockCoordSort[i]);
-                    blockCoord[i, 1] = (int)Math.Truncate((blockCoordSort[i] - Math.Truncate(blockCoordSort[i])) * k); ;
+                    blockCoord[i, 0] = blockCoordSort[i]/10;
+                    blockCoord[i, 1] = blockCoordSort[i] - (blockCoord[i, 0] * 10);
                 }
                 
                 Console.WriteLine("Координаты препятствий");
@@ -171,10 +155,10 @@ namespace Lesson_07_CalcVariant
                 }
             }
         }
-        static void QuickSort(decimal[] array, int first, int last)
+        static void QuickSort(int[] array, int first, int last)
         {
             int i = first, j = last;
-            decimal x = array[(first + last) / 2];
+            int x = array[(first + last) / 2];
 
             do
             {
