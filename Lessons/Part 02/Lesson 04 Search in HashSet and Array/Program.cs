@@ -12,7 +12,7 @@ namespace Lesson_04_Search_in_HashSet_and_Array
             BenchmarkSwitcher.FromAssembly(typeof(Program).Assembly).Run(args);
             Console.ReadLine();
         }
-        
+
     }
     [MinColumn, MedianColumn, MaxColumn]
     public class BenchmarkClass

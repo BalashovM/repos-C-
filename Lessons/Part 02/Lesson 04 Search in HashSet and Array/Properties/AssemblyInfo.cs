@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов для изменения сведений,
 // связанные с этой сборкой.
-[assembly: AssemblyTitle("Lesson 05 Tree DFS")]
+[assembly: AssemblyTitle("Lesson 04 Search in HashSet and Array")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Lesson 05 Tree DFS")]
+[assembly: AssemblyProduct("Lesson 04 Search in HashSet and Array")]
 [assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID представляет идентификатор typelib, если этот проект доступен из модели COM
-[assembly: Guid("70466600-b3a2-4527-bc85-79b4d4bb1b87")]
+[assembly: Guid("82c3da03-1bdd-4336-9773-2f44c2e500ed")]
 
 // Сведения о версии сборки состоят из указанных ниже четырех значений:
 //
